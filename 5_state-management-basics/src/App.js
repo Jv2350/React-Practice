@@ -2,36 +2,31 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [tasks, setTasks] = useState([
+    { id: 5271, name: "Record React Lectures", completed: true },
+    { id: 7825, name: "Edit React Lectures", completed: false },
+    { id: 8391, name: "Watch Lectures", completed: false },
+  ]);
 
-  function handleAdd() {
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-    setCount((count) => count + 1);
-  }
-
-  function handleSub() {
-    setCount(count - 1);
-  }
-
-  function handleReset() {
-    setCount(0);
+  function handleDelete(id) {
+    setTasks(tasks.filter((task) => task.id !== id));
   }
 
   return (
     <div className="App">
-      <div className="box">
-        <p>{count}</p>
-        <button onClick={handleAdd} className="add">
-          ADD
-        </button>
-        <button onClick={handleSub} className="sub">
-          SUB
-        </button>
-        <button onClick={handleReset} className="reset">
-          RESET
-        </button>
-      </div>
+      <h1>Task List</h1>
+      <ul>
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <span>
+              {task.id} - {task.name}
+            </span>
+            <button onClick={() => handleDelete(task.id)} className="delete">
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

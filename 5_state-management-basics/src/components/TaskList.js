@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TaskCard } from "./TaskCard";
 
 export const TaskList = () => {
   const [tasks, setTasks] = useState([
@@ -21,17 +22,7 @@ export const TaskList = () => {
         </button>
         {show &&
           tasks.map((task) => (
-            <li
-              key={task.id}
-              className={task.completed ? "completed" : "incomplete"}
-            >
-              <span>
-                {task.id} - {task.name}
-              </span>
-              <button onClick={() => handleDelete(task.id)} className="delete">
-                Delete
-              </button>
-            </li>
+            <TaskCard key={task.id} task={task} handleDelete={handleDelete} />
           ))}
       </ul>
     </>

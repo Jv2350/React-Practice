@@ -1,10 +1,16 @@
-import Logo from "../assets/logo.png";
+import { useState } from "react";
 
-export const Header = () => {
+export const BoxCard = ({ result, children }) => {
+  const [show, setShow] = useState(true);
+
   return (
-    <header>
-      <img src={Logo} alt="" />
-      <a href="/">Home</a>
-    </header>
+    <div className={show ? "" : "hidden"}>
+      <div className={`box ${result}`}>
+        {children}
+        <button onClick={() => setShow(!show)} className="trigger">
+          Hide
+        </button>
+      </div>
+    </div>
   );
 };
